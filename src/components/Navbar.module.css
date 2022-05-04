@@ -1,0 +1,70 @@
+.nav {
+    grid-area: n;
+    background-color: darkorange;
+}
+
+.item {
+    color: aliceblue;
+}
+
+.nav {
+
+    background-color: #222;
+    padding: 20px;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: compact;
+    justify-content: center;
+    align-items: start;
+    overflow: hidden;
+}
+
+.item a {
+    position: relative;
+    display: block;
+    flex-direction: column;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    color: silver;
+    font-size: 2em;
+    font-weight: 400;
+    transition: 0.5s;
+}
+
+.item a:hover {
+    color: rgba(255, 255, 255, 0.1);
+}
+
+.item a::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.35em;
+    color: #3bffe8;
+    text-shadow: 0 0 10px #3bffe8,
+    0 0 30px #3bffe8,
+    0 0 80px #3bffe8;
+    font-weight: 200;
+    letter-spacing: 20px;
+    white-space: nowrap;
+    text-align: center;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.item a:hover::before {
+    opacity: 1;
+    letter-spacing: 6px;
+
+}
+
+.item a.activeLink {
+    color: gold;
+}
