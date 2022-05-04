@@ -1,7 +1,8 @@
 .header {
     grid-area: auto;
-    background-color: indigo;
-    
+    background-color: #ffe91e;
+    text-align: center;
+
 }
 
 .header img {
