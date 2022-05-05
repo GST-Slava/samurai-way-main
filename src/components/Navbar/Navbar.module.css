@@ -1,14 +1,8 @@
 .nav {
     grid-area: n;
-    background-color: darkorange;
-}
-
-.item {
-    color: silver;
 }
 
 .nav {
-
     background-color: #222;
     padding: 20px;
     margin: 0;
@@ -34,6 +28,10 @@
     font-size: 2em;
     font-weight: 400;
     transition: 0.5s;
+}
+
+.item a.activeLink {
+    color: gold;
 }
 
 .item a:hover {
@@ -65,6 +63,3 @@
 
 }
 
-.item a.activeLink {
-    color: gold;
-}
