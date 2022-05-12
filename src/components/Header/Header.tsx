@@ -5,7 +5,7 @@ export const Header = () => {
     return (
         <header className={cs.header}>
             <img src={require('../../img/header_img.jpg')} alt="header logo"/>
-            Social Network Samurai Way
+            Social Network SamuraiWay
         </header>
     )
 }

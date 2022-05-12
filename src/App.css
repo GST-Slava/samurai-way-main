@@ -7,11 +7,13 @@
 "n c";
 
     grid-template-rows: 60px 1fr;
-    grid-auto-columns: 3fr 11fr;
+    grid-auto-columns: 2fr 10fr;
+
 }
 
 .app-wrapper-content {
     grid-area: c;
-    background-color: gold;
+    background-color: #ffd70b;
+    
 }
 
