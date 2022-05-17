@@ -4,8 +4,16 @@ import cs from './Dialogs.module.css';
 import {Message} from "./Message/Message";
 
 type dialogsDataType = {
-    id: number,
+    dialogs: Array<DialogsPropsType>
+    messages: Array<MessagesPropsType>
+}
+type DialogsPropsType = {
+    id: number
     name: string
+}
+type MessagesPropsType = {
+    id: number
+    message: string
 }
 
 let dialogs = [
@@ -23,18 +31,14 @@ let messages = [
     {id: 5, message: 'Welcome'}
 ]
 
-let dialogsElements = dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
-let messagesElements = messages.map(m => <Message message={m.message}/>)
+let dialogsElements = dialogs.map((d) => <DialogItem name={d.name} id={d.id}/>)
+let messagesElements = messages.map((m) => <Message message={m.message}/>)
 
 export const Dialogs: React.FC<dialogsDataType> = (props) => {
     return (
         <div className={cs.dialogs}>
-            <div className={cs.dialogsItem}>
-                {dialogsElements}
-            </div>
-            <div className={cs.messages}>
-                {messagesElements}
-            </div>
+            <div className={cs.dialogsItem}>{dialogsElements}</div>
+            <div className={cs.messages}>{messagesElements}</div>
         </div>
     )
 }
