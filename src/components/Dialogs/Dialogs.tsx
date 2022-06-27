@@ -1,44 +1,30 @@
 import React from "react";
 import {DialogItem} from "./DialogItem/DialogsItem";
-import cs from './Dialogs.module.css';
+import s from './Dialogs.module.css';
 import {Message} from "./Message/Message";
+import {state} from "../../redux/state";
 
-type dialogsDataType = {
-    dialogs: Array<DialogsPropsType>
-    messages: Array<MessagesPropsType>
-}
-type DialogsPropsType = {
-    id: number
-    name: string
-}
-type MessagesPropsType = {
-    id: number
-    message: string
+
+let dialogsElements = state.dialogsPage.dialogs.map((d) => <DialogItem name={d.name} id={d.id}/>)
+let messagesElements = state.dialogsPage.messages.map((m) => <Message message={m.message}/>)
+
+class dialogsDataType {
 }
 
-let dialogs = [
-    {id: 1, name: 'Elon'},
-    {id: 2, name: 'Frank'},
-    {id: 3, name: 'Sam'},
-    {id: 4, name: 'Dean'},
-    {id: 5, name: 'Jason'}
-]
-let messages = [
-    {id: 1, message: 'Uh no'},
-    {id: 2, message: 'Yo'},
-    {id: 3, message: 'Hey'},
-    {id: 4, message: 'Hello'},
-    {id: 5, message: 'Welcome'}
-]
+let newMessageElement = React.createRef<HTMLTextAreaElement>();
 
-let dialogsElements = dialogs.map((d) => <DialogItem name={d.name} id={d.id}/>)
-let messagesElements = messages.map((m) => <Message message={m.message}/>)
+const addMessage = () => {
+    let text = newMessageElement.current?.value;
+}
 
 export const Dialogs: React.FC<dialogsDataType> = (props) => {
     return (
-        <div className={cs.dialogs}>
-            <div className={cs.dialogsItem}>{dialogsElements}</div>
-            <div className={cs.messages}>{messagesElements}</div>
+        <div className={s.dialogs}>
+
+            <div className={s.dialogsItem}>{dialogsElements}</div>
+            <div className={s.messages}>{messagesElements}</div>
+            <textarea onClick={addMessage}></textarea>
+            <button className={s.button}>send message</button>
         </div>
     )
 }

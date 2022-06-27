@@ -1,5 +1,5 @@
 import React from "react";
-import cs from './../Dialogs.module.css';
+import s from './../Dialogs.module.css';
 
 
 type MessageType = {
@@ -8,7 +8,7 @@ type MessageType = {
 
 export const Message: React.FC<MessageType> = (props) => {
     return (
-        <div className={cs.dialog}>{props.message}</div>
+        <div className={s.dialog}>{props.message}</div>
     )
 }
 

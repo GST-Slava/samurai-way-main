@@ -19,3 +19,31 @@
 .message {
     padding: 10px;
 }
+
+.button {
+    margin-left: 3px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: grid;
+    width: 100px;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    color: #bd2122;
+    background-color: #2d2b2b;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 9px #a2a2a2;
+}
+
+.button:hover {
+    background-color: #bd2122;
+    color: #2d2b2b;
+}
+
+.button:active {
+    background-color: #59fa01;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}

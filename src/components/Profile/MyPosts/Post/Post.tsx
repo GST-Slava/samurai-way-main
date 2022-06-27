@@ -1,15 +1,14 @@
 import React from "react";
-import cs from './Post.module.css';
+import s from './Post.module.css';
 
 
-type PostType = {
+type MessageType = {
     message: string
-    likesCount: number
 }
 
-export const Post: React.FC<PostType> = (props) => {
+export const Post: React.FC<MessageType> = (props) => {
     return (
-        <div className={cs.item}>
+        <div className={s.item}>
             <img src={require('../../../../img/avatar_post.jpg')} alt="avatar_default"/>
             {props.message}
             <span>like </span>

@@ -1,41 +1,46 @@
-import React from "react";
-import cs from './MyPosts.module.css';
+import React, {ChangeEvent} from "react";
+import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
+import {PostType, state} from "../../../redux/state";
 
-type PostsDataType = {
-    posts: Array<PostsPropsType>
+type MessageType = {
     message: string
-    likesCount: number
+    posts: Array<PostType>
+    addPostCallback: (postText: string) => void
+    changeNewTextCallback: (newText: string) => void
 }
 
-type PostsPropsType = {
-    message: string
-    likesCount: number
-}
+export const MyPosts: React.FC<MessageType> = (props) => {
+    let postsElement = state.profilePage.posts.map((p) =>
+        <Post message={p.message}/>)
 
-let posts = [
-    {message: 'Uh no ', likesCount: 12},
-    {message: 'Hi ', likesCount: 10},
-    {message: 'Hello ', likesCount: 9}
-]
-
-let postsElement = posts.map((p) => <Post message={p.message} likesCount={p.likesCount}/>)
-
-export const MyPosts: React.FC<PostsDataType> = (props) => {
-
-
+    const addPost = () => {
+        props.addPostCallback(props.message)
+    }
+    const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.changeNewTextCallback(e.currentTarget.value)
+    }
     return (
-        <div className={cs.postsBlock}>
+        <div className={s.postsBlock}>
+
+            {props.message}
+            <hr/>
+            {props.posts.map(p => <div key={p.id}><b>{p.message}</b></div>)}
+            <hr/>
+
             <h3>My Posts</h3>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea
+                        value={props.message}
+                        onChange={newTextChangeHandler}>
+                    </textarea>
                 </div>
                 <div>
-                    <button className={cs.button}>Add post</button>
+                    <button className={s.button} onClick={addPost}>Add post</button>
                 </div>
             </div>
-            <div className={cs.posts}>
+            <div className={s.posts}>
                 {postsElement}
             </div>
         </div>
