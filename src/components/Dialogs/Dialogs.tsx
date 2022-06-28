@@ -2,11 +2,11 @@ import React from "react";
 import {DialogItem} from "./DialogItem/DialogsItem";
 import s from './Dialogs.module.css';
 import {Message} from "./Message/Message";
-import {state} from "../../redux/state";
+import {store} from "../../redux/state";
 
 
-let dialogsElements = state.dialogsPage.dialogs.map((d) => <DialogItem name={d.name} id={d.id}/>)
-let messagesElements = state.dialogsPage.messages.map((m) => <Message message={m.message}/>)
+let dialogsElements = store._state.dialogsPage.dialogs.map((d) => <DialogItem name={d.name} id={d.id}/>)
+let messagesElements = store._state.dialogsPage.messages.map((m) => <Message message={m.message}/>)
 
 class dialogsDataType {
 }
