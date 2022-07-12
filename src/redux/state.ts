@@ -25,16 +25,30 @@ export type RootStateType = {
     dialogsPage: DialogPageType
     sidebar: SidebarType
 }
-
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewTextAC>
+export const addPostAC = (postText: string) => {
+    return {
+        type: 'ADD-POST',
+        postText: postText
+    } as const
+}
+export const changeNewTextAC = (newText: string) => {
+    return {
+        type: "CHANGE-NEW-TEXT",
+        newText: newText
+    } as const
+}
 export type  StoreType = {
     _state: RootStateType
+    _onChange: () => void
     changeNewText: (newText: string) => void
     addPost: (postText: string) => void
-    _onChange: () => void
-    subscribe: (observer: () => void) => void
-    getState: () => RootStateType
-}
 
+    subscribe: (callback: () => void) => void
+    getState: () => RootStateType
+
+    dispatch: (action: ActionsTypes) => void
+}
 export const store: StoreType = {
     _state: {
         profilePage: {
@@ -60,9 +74,13 @@ export const store: StoreType = {
                 {id: 3, message: 'Hey'},
                 {id: 4, message: 'Hello'},
                 {id: 5, message: 'Welcome'}
-            ]
+            ],
+
         },
         sidebar: {}
+    },
+    _onChange() {
+        console.log('state changed')
     },
     changeNewText(newText: string) {
         this._state.profilePage.messageForNewPost = newText;
@@ -77,14 +95,25 @@ export const store: StoreType = {
         this._state.profilePage.posts.push(newPost);
         this._onChange();
     },
-    _onChange() {
-        console.log('state changed')
-    },
-    subscribe(observer) {
-        this._onChange = observer;
+    subscribe(callback) {
+        this._onChange = callback;
     },
     getState() {
         return this._state
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostType = {
+                id: new Date().getTime(),
+                message: action.postText,
+                likesCount: 0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._onChange();
+        } else if (action.type === 'CHANGE-NEW-TEXT') {
+            this._state.profilePage.messageForNewPost = action.newText;
+            this._onChange();
+        }
     }
-}
 
+}

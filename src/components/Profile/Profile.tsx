@@ -15,8 +15,9 @@ export const Profile: React.FC<PropsType> = (props) => {
         <div>
             <ProfileInfo/>
             <MyPosts
-                message={state.profilePage.messageForNewPost}
+                dispatch={props.store.dispatch.bind(props.store)}
                 posts={state.profilePage.posts}
+                message={state.profilePage.messageForNewPost}
                 addPostCallback={props.store.addPost.bind(props.store)}
                 changeNewTextCallback={props.store.changeNewText.bind(props.store)}
             />

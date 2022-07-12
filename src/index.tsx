@@ -12,5 +12,7 @@ let renderEntireTree = () => {
             <App/>
         </BrowserRouter>, document.getElementById('root'));
 }
-store.subscribe(renderEntireTree)
+
 renderEntireTree();
+store.subscribe(renderEntireTree)
+

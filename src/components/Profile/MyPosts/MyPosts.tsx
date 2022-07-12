@@ -1,14 +1,16 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {PostType, store} from "../../../redux/state";
+import {ActionsTypes, addPostAC, PostType, store} from "../../../redux/state";
 
 type MessageType = {
     message: string
     posts: Array<PostType>
     addPostCallback: (postText: string) => void
     changeNewTextCallback: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
+
 
 export const MyPosts: React.FC<MessageType> = (props) => {
     let postsElement = store._state.profilePage.posts.map((p) =>
@@ -16,6 +18,7 @@ export const MyPosts: React.FC<MessageType> = (props) => {
 
     const addPost = () => {
         props.addPostCallback(props.message)
+        props.dispatch(addPostAC(props.message))
     }
     const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.changeNewTextCallback(e.currentTarget.value)
