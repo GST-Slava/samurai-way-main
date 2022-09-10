@@ -1,7 +1,11 @@
 .header {
     grid-area: h;
-    background-color: #ffe20a;
-
+    background: linear-gradient(90deg, rgba(59, 255, 232, 1) 0%, rgba(28, 200, 232, 1) 37%, rgba(0, 255, 124, 1) 100%);
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 0 0 3px #3bffe8;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
 }
 
 .header img {

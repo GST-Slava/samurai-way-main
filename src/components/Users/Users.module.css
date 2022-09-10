@@ -1,0 +1,20 @@
+.usersContainer {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 3px;
+
+}
+
+.avatarImg {
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+    padding: 3px;
+    background-position: center;
+}
+
+.buttonFollowing {
+    padding: unset;
+}

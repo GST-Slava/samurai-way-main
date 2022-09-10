@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {ActionsTypes, addPostAC, PostType, store} from "../../../redux/state";
+import {ActionsTypes, PostType, store} from "../../../redux/store";
+import {addPostAC} from "../../../redux/profile-reduser";
 
 type MessageType = {
     message: string

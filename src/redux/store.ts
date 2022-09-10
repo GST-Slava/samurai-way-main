@@ -1,8 +1,12 @@
-export type MessageType = {
+import {addPostAC, changeNewTextAC, profileReducer} from "./profile-reduser";
+import {sendMessageAC, dialogsReducer, updateNewMessageTextAC} from "./dialogs-reduser";
+import {sidebarReducer} from "./sidebar-reduser";
+
+type MessageType = {
     id: number
     message: string
 }
-export type DialogType = {
+type DialogType = {
     id: number
     name: string
 }
@@ -18,6 +22,12 @@ export type ProfilePageType = {
 export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessageText: string
+}
+
+export type UsersLocationType = {
+    city: string
+    country: string
 }
 export type SidebarType = {}
 export type RootStateType = {
@@ -25,40 +35,31 @@ export type RootStateType = {
     dialogsPage: DialogPageType
     sidebar: SidebarType
 }
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewTextAC>
-export const addPostAC = (postText: string) => {
-    return {
-        type: 'ADD-POST',
-        postText: postText
-    } as const
-}
-export const changeNewTextAC = (newText: string) => {
-    return {
-        type: "CHANGE-NEW-TEXT",
-        newText: newText
-    } as const
-}
+export type ActionsTypes = ReturnType<typeof addPostAC>
+    | ReturnType<typeof changeNewTextAC>
+    | ReturnType<typeof updateNewMessageTextAC>
+    | ReturnType<typeof sendMessageAC>
+
+
 export type  StoreType = {
     _state: RootStateType
     _onChange: () => void
     changeNewText: (newText: string) => void
     addPost: (postText: string) => void
-
-    subscribe: (callback: () => void) => void
+    subscribe: (callback: (getState: RootStateType) => void) => void
     getState: () => RootStateType
-
     dispatch: (action: ActionsTypes) => void
 }
 export const store: StoreType = {
     _state: {
         profilePage: {
-            messageForNewPost: '',
             posts: [
                 {id: 1, message: 'Uh no ', likesCount: 12},
                 {id: 2, message: 'Hi ', likesCount: 10},
                 {id: 3, message: 'Hello ', likesCount: 9},
                 {id: 4, message: 'Hello World ', likesCount: 9}
             ],
+            messageForNewPost: '',
         },
         dialogsPage: {
             dialogs: [
@@ -75,7 +76,7 @@ export const store: StoreType = {
                 {id: 4, message: 'Hello'},
                 {id: 5, message: 'Welcome'}
             ],
-
+            newMessageText: "",
         },
         sidebar: {}
     },
@@ -96,24 +97,16 @@ export const store: StoreType = {
         this._onChange();
     },
     subscribe(callback) {
-        this._onChange = callback;
+
     },
     getState() {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostType = {
-                id: new Date().getTime(),
-                message: action.postText,
-                likesCount: 0
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._onChange();
-        } else if (action.type === 'CHANGE-NEW-TEXT') {
-            this._state.profilePage.messageForNewPost = action.newText;
-            this._onChange();
-        }
-    }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.profilePage, action);
 
+
+    }
 }

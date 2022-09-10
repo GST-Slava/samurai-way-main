@@ -1,30 +1,36 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import {DialogItem} from "./DialogItem/DialogsItem";
 import s from './Dialogs.module.css';
 import {Message} from "./Message/Message";
-import {store} from "../../redux/state";
+import {DialogPageType, store} from "../../redux/store";
 
+export const Dialogs: React.FC<DialogPageType> = (props) => {
 
-let dialogsElements = store._state.dialogsPage.dialogs.map((d) => <DialogItem name={d.name} id={d.id}/>)
-let messagesElements = store._state.dialogsPage.messages.map((m) => <Message message={m.message}/>)
+    let state = store._state.dialogsPage;
 
-class dialogsDataType {
-}
+    let dialogsElements = store._state.dialogsPage.dialogs.map((d) => <DialogItem name={d.name} key={d.id} id={d.id}/>)
+    let messagesElements = store._state.dialogsPage.messages.map((m) => <Message message={m.message} key={m.id}/>)
+    let newMessageBody = store._state.dialogsPage.newMessageText;
 
-let newMessageElement = React.createRef<HTMLTextAreaElement>();
+    let onSendMessageClick = () => {
 
-const addMessage = () => {
-    let text = newMessageElement.current?.value;
-}
+    }
 
-export const Dialogs: React.FC<dialogsDataType> = (props) => {
+    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let body = e.currentTarget.value;
+
+    }
+
     return (
         <div className={s.dialogs}>
+            <span>
 
+            </span>
             <div className={s.dialogsItem}>{dialogsElements}</div>
             <div className={s.messages}>{messagesElements}</div>
-            <textarea onClick={addMessage}></textarea>
-            <button className={s.button}>send message</button>
+            <textarea value={newMessageBody} onChange={onNewMessageChange}
+                      placeholder='Enter your message'></textarea>
+            <button className={s.button} onClick={onSendMessageClick}>send message</button>
         </div>
     )
 }
