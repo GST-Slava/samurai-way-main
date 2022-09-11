@@ -9,7 +9,7 @@ type MessageType = {
 export const Post: React.FC<MessageType> = (props) => {
     return (
         <div className={s.item}>
-            <img src={require('../../../../img/avatar_post.jpg')} alt="avatar_default"/>
+            <img src={require('../../../../assets/img/avatar_post.jpg')} alt="avatar_default"/>
             {props.message}
             <span>like </span>
             <span>send </span>
