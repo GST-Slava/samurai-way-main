@@ -6,17 +6,20 @@ import userDefaultAvatar from './../../assets/img/userDefaultAvatar.png'
 
 
 export const Users = (props: UsersPropsType) => {
-    if (props.usersPage.users.length === 0) {
 
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+    const getUsers = () => {
+        if (props.usersPage.users.length === 0) {
 
-            props.setUsers(response.data.items)
-        })
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
 
-
+                props.setUsers(response.data.items)
+            })
+        }
     }
 
+
     return <div className={s.usersContainer}>
+        <button onClick={getUsers}>Get Users</button>
         {
             props.usersPage.users.map(u =>
                 <div key={u.id}>
