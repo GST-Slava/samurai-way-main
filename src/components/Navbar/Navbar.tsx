@@ -12,6 +12,9 @@ export const Navbar = () => {
                 <NavLink to='/dialogs' data-text='Messages' activeClassName={s.activeLink}>Messages</NavLink>
             </div>
             <div className={`${s.item} ${s.activeLink}`}>
+                <NavLink to='/users' data-text='Users' activeClassName={s.activeLink}>Users</NavLink>
+            </div>
+            <div className={`${s.item} ${s.activeLink}`}>
                 <NavLink to='/news' data-text='News' activeClassName={s.activeLink}>News</NavLink>
             </div>
             <div className={`${s.item} ${s.activeLink}`}>
