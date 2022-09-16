@@ -15,7 +15,13 @@ class Users extends React.Component<any, any> {
 
     render() {
         return <div className={s.usersContainer}>
-
+            <div>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+            </div>
             {
                 this.props.usersPage.users.map((u: { id: React.Key | null | undefined; photos: { small: string | null | undefined; }; followed: any; name: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; status: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) =>
                     <div key={u.id}>
