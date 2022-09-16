@@ -1,8 +1,9 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {ActionsTypes, PostType, store} from "../../../redux/store";
+import {ActionsTypes, PostType} from "../../../redux/store";
 import {addPostAC} from "../../../redux/profile-reduser";
+import {store} from "../../../redux/redux-store";
 
 type MessageType = {
     message: string
@@ -14,7 +15,7 @@ type MessageType = {
 
 
 export const MyPosts: React.FC<MessageType> = (props) => {
-    let postsElement = store._state.profilePage.posts.map((p) =>
+    let postsElement = store.getState().profilePage.posts.map((p) =>
         <Post message={p.message}/>)
 
     const addPost = () => {
