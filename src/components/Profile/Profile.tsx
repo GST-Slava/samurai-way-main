@@ -1,19 +1,16 @@
 import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {MyPosts} from "./MyPosts/MyPosts";
-import {store} from "../../redux/redux-store";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 
 export const Profile = (props: any) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts
-                dispatch={store.dispatch}
-                posts={store.getState().profilePage.posts}
-                message={store.getState().profilePage.messageForNewPost}
-                addPostCallback={store.dispatch.bind(props.post)}
-                changeNewTextCallback={store.getState().profilePage.messageForNewPost}
+            <MyPostsContainer
+                message={props.message}
+                dispatch={props.id}
+                addPostCallback={props.text}
             />
         </div>
     )

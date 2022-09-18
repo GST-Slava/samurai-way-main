@@ -6,12 +6,22 @@ import {App} from "./App";
 import {Provider} from "react-redux";
 import {store} from "./redux/redux-store";
 
-ReactDOM.render(
-    <BrowserRouter>
-        <Provider store={store}>
-            <App/>
-        </Provider>
-    </BrowserRouter>, document.getElementById('root'));
+let renderEntireTree = (state: any) => {
+    ReactDOM.render(
+        <BrowserRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>, document.getElementById('root'));
+}
+
+renderEntireTree(store.getState());
+
+store.subscribe(() => {
+    let state = store.getState();
+    renderEntireTree(state)
+})
+
 
 
 

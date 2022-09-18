@@ -18,3 +18,7 @@
 .buttonFollowing {
     padding: unset;
 }
+
+.selectedPage {
+    font-weight: bold;
+}
