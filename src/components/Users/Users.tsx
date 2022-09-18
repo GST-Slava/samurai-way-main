@@ -1,32 +1,33 @@
-import React from "react";
-import s from './Users.module.css'
-import {UsersPropsType} from "./UsersContainer";
-import axios from "axios";
-import userDefaultAvatar from './../../assets/img/userDefaultAvatar.png'
+import React from 'react';
+import s from "./Users.module.css";
+import userDefaultAvatar from "../../assets/img/userDefaultAvatar.png";
 
+export const Users = (props: { totalUsersCount: number; pageSize: number; currentPage: number; onPageChanged: (arg0: number) => void; usersPage: { users: any[]; }; unfollow: (arg0: any) => void; follow: (arg0: any) => void; }) => {
 
-export const Users = (props: UsersPropsType) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
-    const getUsers = () => {
-        if (props.usersPage.users.length === 0) {
-
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-
-                props.setUsers(response.data.items)
-            })
-        }
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
     }
 
-
     return <div className={s.usersContainer}>
-        <button onClick={getUsers}>Get Users</button>
+        <div>
+            {pages.map(p => {
+                return <span className={props.currentPage === p ? s.selectedPage : ''}
+                             onClick={(e) => {
+                                 props.onPageChanged(p);
+                             }}>{p}
+                    </span>
+            })}
+        </div>
         {
-            props.usersPage.users.map(u =>
+            props.usersPage.users.map((u) =>
                 <div key={u.id}>
                 <span>
                     <div>
                         <img className={s.avatarImg} src={u.photos.small != null ? u.photos.small : userDefaultAvatar}
-                             alt={'Avatar Image'}/>
+                             alt={'Avatar'}/>
                     </div>
                     <div>
                         {u.followed
@@ -51,4 +52,4 @@ export const Users = (props: UsersPropsType) => {
                 </div>)
         }
     </div>
-}
+};
