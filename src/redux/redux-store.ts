@@ -4,6 +4,7 @@ import {dialogsReducer} from "./dialogs-reduser";
 import {sidebarReducer} from "./sidebar-reduser";
 import {usersReducer} from "./users-reduser";
 
+
 export const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,

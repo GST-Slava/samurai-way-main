@@ -2,6 +2,17 @@ const ADD_POST = "ADD_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const CHANGE_NEW_TEXT = "CHANGE_NEW_TEXT";
 
+type PostsPropsType = Array<{
+    id: number
+    message: string
+    likesCount: number
+}>
+
+export type ProfileStateType = {
+    posts: PostsPropsType
+    newPostText: string
+    profile: null
+}
 
 let initialState = {
     posts: [
