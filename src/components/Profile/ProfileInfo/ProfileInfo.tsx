@@ -12,11 +12,9 @@ export const ProfileInfo = (props: any) => {
         <div>
             <div className={s.img}><img src={require('../../../assets/img/back_profile.jpg')} alt="fireSpot"/></div>
             <div className={s.descriptionBlock}>
-                {/* <img src={props.profile.photos.large}/>*/}
-                <div>
-                    {props.profile.aboutMe}
-                    {props.profile.lookingForAJobDescription}
-                </div>
+                <img src={props.profile.photos.large} alt={'Profile photos Large'}/>
+                {props.profile.aboutMe}
+                {props.profile.lookingForAJobDescription}
                 description
             </div>
         </div>
