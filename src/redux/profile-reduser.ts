@@ -1,4 +1,5 @@
 const ADD_POST = "ADD_POST";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
 const CHANGE_NEW_TEXT = "CHANGE_NEW_TEXT";
 
 
@@ -9,7 +10,8 @@ let initialState = {
         {id: 3, message: 'Hello ', likesCount: 9},
         {id: 4, message: 'Hello World ', likesCount: 9}
     ],
-    messageForNewPost: 'Hi people',
+    newPostText: 'Hi people',
+    profile: null
 };
 
 export const profileReducer = (state = initialState, action: any) => {
@@ -17,19 +19,24 @@ export const profileReducer = (state = initialState, action: any) => {
         case ADD_POST: {
             const newPost = {
                 id: new Date().getTime(),
-                message: state.messageForNewPost,
+                message: state.newPostText,
                 likesCount: 0
             };
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                messageForNewPost: ''
+                newPostText: ''
             };
         }
         case CHANGE_NEW_TEXT: {
             return {
                 ...state,
-                messageForNewPost: action.newText
+                newPostText: action.newText
+            }
+        }
+        case SET_USER_PROFILE: {
+            return {
+                ...state, profile: action.profile
             }
         }
         default:
@@ -43,6 +50,14 @@ export const addPostAC = (postText: string) => {
         postText: postText
     } as const
 }
+
+export const setUserProfile = (profile: string) => {
+    return {
+        type: "SET_USER_PROFILE",
+        profile: null
+    } as const
+}
+
 export const changeNewTextAC = (newText: string) => {
     return {
         type: "CHANGE_NEW_TEXT",

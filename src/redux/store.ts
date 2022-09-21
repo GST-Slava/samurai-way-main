@@ -16,8 +16,9 @@ export type PostType = {
     likesCount: number
 }
 export type ProfilePageType = {
-    messageForNewPost: string
+    newPostText: string
     posts: Array<PostType>
+    profile: null
 }
 export type DialogPageType = {
     dialogs: Array<DialogType>
@@ -59,7 +60,8 @@ export const store: StoreType = {
                 {id: 3, message: 'Hello ', likesCount: 9},
                 {id: 4, message: 'Hello World ', likesCount: 9}
             ],
-            messageForNewPost: '',
+            newPostText: '',
+            profile: null
         },
         dialogsPage: {
             dialogs: [
@@ -84,7 +86,7 @@ export const store: StoreType = {
         console.log('state changed')
     },
     changeNewText(newText: string) {
-        this._state.profilePage.messageForNewPost = newText;
+        this._state.profilePage.newPostText = newText;
         this._onChange();
     },
     addPost(postText: string) {

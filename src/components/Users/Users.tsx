@@ -1,6 +1,7 @@
 import React from 'react';
 import s from "./Users.module.css";
 import userDefaultAvatar from "../../assets/img/userDefaultAvatar.png";
+import {NavLink} from "react-router-dom";
 
 export const Users = (props: { totalUsersCount: number; pageSize: number; currentPage: number; onPageChanged: (arg0: number) => void; usersPage: { users: any[]; }; unfollow: (arg0: any) => void; follow: (arg0: any) => void; }) => {
 
@@ -26,8 +27,12 @@ export const Users = (props: { totalUsersCount: number; pageSize: number; curren
                 <div key={u.id}>
                 <span>
                     <div>
-                        <img className={s.avatarImg} src={u.photos.small != null ? u.photos.small : userDefaultAvatar}
-                             alt={'Avatar'}/>
+                        <NavLink to={'/profile/' + u.id}>
+                            <img className={s.avatarImg}
+                                 src={u.photos.small != null ? u.photos.small : userDefaultAvatar}
+                                 alt={'Avatar'}/>
+                        </NavLink>
+
                     </div>
                     <div>
                         {u.followed

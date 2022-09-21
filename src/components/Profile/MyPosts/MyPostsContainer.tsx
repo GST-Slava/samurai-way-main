@@ -8,7 +8,7 @@ import {addPostAC} from "../../../redux/profile-reduser";
 const mapStateToProps = (state: any) => {
     return {
         posts: state.profilePage.posts,
-        messageForNewPost: state.profilePage.messageForNewPost
+        newPostText: state.profilePage.newPostText
     }
 }
 
