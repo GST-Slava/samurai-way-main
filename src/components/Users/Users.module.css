@@ -4,7 +4,6 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: 3px;
-
 }
 
 .avatarImg {
@@ -19,6 +18,14 @@
     padding: unset;
 }
 
+.pages {
+    cursor: pointer;
+}
+
+.page {
+}
+
 .selectedPage {
     font-weight: bold;
+
 }
