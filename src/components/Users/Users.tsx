@@ -4,7 +4,7 @@ import userDefaultAvatar from "../../assets/img/userDefaultAvatar.png";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 
-export const Users = (props: any) => {
+export const Users = (props: { totalUsersCount: number; pageSize: number; currentPage: number; onPageChanged: (arg0: number) => void; usersPage: { users: any[]; }; followingInProgress: any[]; toggleFollowingProgress: (arg0: boolean, arg1: any) => void; unfollow: (arg0: any) => void; follow: (arg0: any) => void; }) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
