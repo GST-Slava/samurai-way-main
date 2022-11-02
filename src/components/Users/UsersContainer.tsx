@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    follow,
+    follow, getUsersThunkCreator,
     InitialStateType,
     setCurrentPage, setTotalUsersCount,
     setUsers, toggleFollowingProgress, toggleIsFetching,
@@ -34,7 +34,8 @@ export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
 
 class UsersContainer extends React.Component<UsersPropsType, InitialStateType> {
     componentDidMount() {
-        this.props.toggleIsFetching(true);
+        this.props.getUsersThunkCreator();
+        /*this.props.toggleIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
             {
                 withCredentials: true
@@ -43,7 +44,7 @@ class UsersContainer extends React.Component<UsersPropsType, InitialStateType> {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
                 this.props.setTotalUsersCount(response.data.totalCount)
-            });
+            });*/
     }
 
     onPageChanged = (pageNumber: number) => {
@@ -98,5 +99,6 @@ export default connect(mapStateToProps,
         setCurrentPage,
         setTotalUsersCount: setTotalUsersCount,
         toggleIsFetching,
-        toggleFollowingProgress
+        toggleFollowingProgress,
+        getUsersThunkCreator,
     })(UsersContainer);

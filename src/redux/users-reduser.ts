@@ -1,4 +1,5 @@
 import {UsersLocationType} from "./store";
+import axios from "axios";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -40,6 +41,20 @@ const initialState: InitialStateType = {
     followingInProgress: [],
 };
 
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        toggleIsFetching(true);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`,
+            {
+                withCredentials: true
+            })
+            .then(response => {
+                dispatch(toggleIsFetching(false));
+                dispatch(setUsers(response.data.items));
+                dispatch(setTotalUsersCount(response.data.totalCount));
+            });
+    }
+}
 
 export const usersReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
 
